@@ -9,10 +9,6 @@ const NavBar = () => {
         <li><NavLink className='py-1 px-3' to="/my-cars">My Cars</NavLink></li>
         <li><NavLink className='py-1 px-3' to="/my-bookings">My Bookings</NavLink></li>
     </>
-    const joining = <>
-        <Link to="/login" className="btn">Login</Link>
-        <Link to="/register" className="btn">Register</Link>
-    </>
 
     return (
         <div className="navbar bg-base-100 w-11/12 mx-auto px-0">
@@ -46,17 +42,7 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <div className='gap-2 hidden lg:flex'>
-                    {joining}
-                </div>
-                <div className='block lg:hidden'>
-                    <details className="dropdown">
-                        <summary className="btn m-1">Join</summary>
-                        <ul className="menu dropdown-content bg-base-100 rounded-box z-[10] md:w-52 w-40 p-2 shadow gap-2 right-0">
-                            {joining}
-                        </ul>
-                    </details>
-                </div>
+                <Link to="/login" className="btn">Login</Link>
             </div>
         </div>
     );

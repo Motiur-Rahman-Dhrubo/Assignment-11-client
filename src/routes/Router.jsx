@@ -5,12 +5,13 @@ import AvailableCars from '../layouts/AvailableCars/AvailableCars';
 import AddCar from '../layouts/AddCar/AddCar';
 import MyCars from '../layouts/MyCars/MyCars';
 import MyBookings from '../layouts/MyBookings/MyBookings';
+import ErrorPage from '../layouts/ErrorPage/ErrorPage';
 
 const Router = createBrowserRouter([
     {
         path: "/",
         element: <App></App>,
-        // errorElement: <ErrorPage></ErrorPage>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
