@@ -6,6 +6,9 @@ import AddCar from '../layouts/AddCar/AddCar';
 import MyCars from '../layouts/MyCars/MyCars';
 import MyBookings from '../layouts/MyBookings/MyBookings';
 import ErrorPage from '../layouts/ErrorPage/ErrorPage';
+import Login from '../layouts/Login/Login';
+import Register from '../layouts/Register/Register';
+import PrivateRoute from './PrivateRoute';
 
 const Router = createBrowserRouter([
     {
@@ -23,15 +26,29 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/add-car",
-                element: <AddCar></AddCar>,
+                element: <PrivateRoute>
+                    <AddCar></AddCar>
+                </PrivateRoute>,
             },
             {
                 path: "/my-cars",
-                element: <MyCars></MyCars>,
+                element: <PrivateRoute>
+                    <MyCars></MyCars>
+                </PrivateRoute>,
             },
             {
                 path: "/my-bookings",
-                element: <MyBookings></MyBookings>,
+                element: <PrivateRoute>
+                    <MyBookings></MyBookings>
+                </PrivateRoute>,
+            },
+            {
+                path: "/login",
+                element: <Login></Login>,
+            },
+            {
+                path: "/register",
+                element: <Register></Register>,
             },
         ],
     },
