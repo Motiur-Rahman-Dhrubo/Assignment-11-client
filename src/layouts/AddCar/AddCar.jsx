@@ -1,40 +1,78 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useDropzone } from "react-dropzone";
 
 const AddCar = () => {
 
     const { user } = useContext(AuthContext);
+    const [images, setImages] = useState([]);
+
+    const onDrop = (acceptedFiles) => {
+        setImages(acceptedFiles.map(file => Object.assign(file, {
+            preview: URL.createObjectURL(file)
+        })));
+    };
+
+    const { getRootProps, getInputProps } = useDropzone({
+        onDrop,
+        accept: {
+            "image/*": []
+        },
+        multiple: true
+    });
 
     const handleAddReview = (e) => {
         e.preventDefault();
-        const data = e.target;
-        const car_model = data.model.value;
-        const daily_rental_price = data.price.value;
-        const availability = data.availability.value;
-        const vehicle_registration_number = data.reg_number.value;
-        const features = Array.from(data.features)
+        const form = e.target;
+        const car_model = form.model.value;
+        const daily_rental_price = form.price.value;
+        const availability = form.availability.value;
+        const vehicle_registration_number = form.reg_number.value;
+        const features = Array.from(form.features)
             .filter(checkbox => checkbox.checked)
             .map(checkbox => checkbox.value);
-        // const features = Array.from(data.features).reduce((feature, checkbox) => {
-        //     feature[checkbox.value] = checkbox.checked;
-        //     return feature;
-        // }, {});
-        const description = data.description.value;
-        const booking_count = data.booking_count.value;
-        const location = data.location.value;
+        const description = form.description.value;
+        const booking_count = form.booking_count.value;
+        const location = form.location.value;
         const user_name = user.displayName;
         const user_email = user.email;
-        const newCar = { car_model, daily_rental_price, availability, vehicle_registration_number, features, description, booking_count, location, user_name, user_email }
+        const now = new Date();
+        const current_date = `${String(now.getDate()).padStart(2, '0')} ${now.toLocaleString('en-US', { month: 'short' })} ${now.getFullYear()}`;
+        const booking_status = "Available";
+        const image_files = images.map(file => file.preview);
 
-        console.log(newCar)
+        const newCar = { car_model, daily_rental_price, availability, vehicle_registration_number, features, description, booking_count, location, user_name, user_email, current_date, booking_status, image_files }
+
+        //send data to server
+        fetch('http://localhost:5000/car', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newCar)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    toast.success("Your Car Added Successfully", {
+                        position: "top-center",
+                        autoClose: 2000,
+                    });
+                    form.reset();
+                    setImages([]);
+                }
+            })
     }
 
     return (
         <div className="min-h-screen flex justify-center items-center mt-5 w-11/12 mx-auto">
-            {/* <ToastContainer /> */}
+            <ToastContainer />
             <div className="card rounded-tr-none rounded-bl-none rounded-tl-3xl rounded-br-3xl w-full max-w-xl shrink-0 shadow-lg bg-[url('/assets/bg.jpg')] bg-cover bg-center shadow-red-400">
                 <form onSubmit={handleAddReview} className="card-body">
-                    
+
                     {/* Car Model */}
                     <div className="form-control" >
                         <label className="label">
@@ -56,8 +94,7 @@ const AddCar = () => {
                         <label className="label">
                             <span className="label-text text-white">Availability</span>
                         </label>
-                        <select className="select select-bordered w-full" name="availability" defaultValue={""} required>
-                            <option disabled value="">Availability</option>
+                        <select className="select select-bordered w-full" name="availability" defaultValue={"Available"} required>
                             <option value="Available">Available</option>
                             <option value="Not Available">Not Available</option>
                         </select>
@@ -78,19 +115,19 @@ const AddCar = () => {
                         </label>
                         <div className="grid grid-cols-2 gap-4">
                             <label className="flex items-center gap-2">
-                                <input type="checkbox" name="features" value="GPS" className="checkbox checkbox-primary" />
+                                <input type="checkbox" name="features" value="GPS" className="checkbox checkbox-secondary" />
                                 <span>GPS</span>
                             </label>
                             <label className="flex items-center gap-2">
-                                <input type="checkbox" name="features" value="AC" className="checkbox checkbox-primary" />
+                                <input type="checkbox" name="features" value="AC" className="checkbox checkbox-accent" />
                                 <span>AC</span>
                             </label>
                             <label className="flex items-center gap-2">
-                                <input type="checkbox" name="features" value="Music Box" className="checkbox checkbox-primary" />
+                                <input type="checkbox" name="features" value="Music Box" className="checkbox checkbox-success" />
                                 <span>Music Box</span>
                             </label>
                             <label className="flex items-center gap-2">
-                                <input type="checkbox" name="features" value="Back Camera" className="checkbox checkbox-primary" />
+                                <input type="checkbox" name="features" value="Back Camera" className="checkbox checkbox-info" />
                                 <span>Back Camera</span>
                             </label>
                         </div>
@@ -110,6 +147,23 @@ const AddCar = () => {
                             <span className="label-text text-white">Booking Count</span>
                         </label>
                         <input name="booking_count" type="number" placeholder="Booking Count" className="input input-bordered" min="0" defaultValue={0} required />
+                    </div>
+
+                    {/* Images */}
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text text-white">Upload Images</span>
+                        </label>
+                        <div {...getRootProps()}
+                            className={"border-2 border-dashed p-4 rounded-lg bg-blue-50 border-gray-500"} >
+                            <input {...getInputProps()} />
+                            <p className="text-center text-gray-500">Drag 'n' drop images here, or click to select files</p>
+                        </div>
+                        <div className="mt-4 flex gap-2 flex-wrap">
+                            {images.map((file, index) => (
+                                <img key={index} src={file.preview} alt="Preview" className="w-20 h-20 object-cover rounded-md" />
+                            ))}
+                        </div>
                     </div>
 
                     {/* Location */}
