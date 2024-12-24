@@ -6,7 +6,7 @@ import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <footer className="footer footer-center bg-neutral text-neutral-content p-10 gap-5">
+        <footer className="footer footer-center bg-neutral text-neutral-content p-10 gap-5 mt-10">
             <aside>
                 <Link to='/'>
                     <img src="/assets/logo.png" alt="logo" className='w-[150px] h-[60px]' />
