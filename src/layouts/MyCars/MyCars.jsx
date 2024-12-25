@@ -1,17 +1,30 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link } from "react-router-dom";
+// import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyCars = () => {
 
     const [myCar, setMyCar] = useState([]);
     const [sortOption, setSortOption] = useState("");
     const { user } = useContext(AuthContext);
+    const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/my_car?email=${user.email}`)
-            .then(res => res.json())
-            .then(data => setMyCar(data))
+        // fetch(`http://localhost:5000/my_car?email=${user.email}`)
+        //     .then(res => res.json())
+        //     .then(data => setMyCar(data))
+
+        // axios.get(`http://localhost:5000/my_car?email=${user.email}`, {
+        //     withCredentials: true
+        // })
+        // .then(res => setMyCar(res.data))
+
+        axiosSecure.get(`/my_car?email=${user.email}`)
+        .then(res => setMyCar(res.data));
+
+
     }, [user.email])
 
     const sortedCars = [...myCar].sort((a, b) => {
@@ -48,10 +61,10 @@ const MyCars = () => {
                             </ul>
                         </details>
                     </div>
-                    <div className="overflow-x-auto mt-5">
-                        <table className="table">
+                        <div className="overflow-x-auto mt-5 shadow-lg bg-[url('/assets/bg.jpg')] bg-cover bg-center shadow-red-400 text-white p-6 rounded-3xl">
+                            <table className="table">
                             {/* head */}
-                            <thead>
+                                <thead className="text-white">
                                 <tr>
                                     <th>Car Image</th>
                                     <th>Car Model</th>
@@ -64,14 +77,10 @@ const MyCars = () => {
                             {/* body */}
                             <tbody>
                                 {sortedCars.map((car) => (
-                                    <tr className="hover" key={car._id}>
+                                    <tr className="hover hover:text-black" key={car._id}>
                                         <td>
                                             {car.image_files.length > 0 ? (
-                                                <img
-                                                    src={car.image_files[0]}
-                                                    alt="car_img"
-                                                    className="rounded-lg border object-cover aspect-[1/1] w-[60px]"
-                                                />
+                                                <img src={car.image_files[0]} alt="car_img" className="rounded-lg border object-cover aspect-[1/1] w-[60px]" />
                                             ) : (
                                                 <p className="text-red-500">No images</p>
                                             )}
@@ -81,8 +90,10 @@ const MyCars = () => {
                                         <td>{car.availability}</td>
                                         <td>{car.current_date}</td>
                                         <td>
-                                            <button className="btn btn-primary btn-xs mr-1">Update</button>
-                                            <button className="btn btn-error btn-xs">Delete</button>
+                                            <div className="flex gap-1">
+                                                <button className="btn btn-primary btn-xs">Update</button>
+                                                <button className="btn btn-error btn-xs">Delete</button>
+                                            </div>
                                         </td>
                                     </tr>
                                 ))}
