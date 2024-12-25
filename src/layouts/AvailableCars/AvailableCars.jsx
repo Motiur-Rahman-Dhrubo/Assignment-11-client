@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import { useEffect, useState } from "react";
 
@@ -87,7 +87,7 @@ const AvailableCars = () => {
                                     <p className="text-red-500">No images available</p>
                                 )}
                             </div>
-                            <button className="btn mt-3 btn-sm">Car Details</button>
+                            <Link to={`/car/${car._id}`} className="btn mt-3 btn-sm">Car Details</Link>
                         </div>
                     ))
                 }

@@ -9,6 +9,7 @@ import ErrorPage from '../layouts/ErrorPage/ErrorPage';
 import Login from '../layouts/Login/Login';
 import Register from '../layouts/Register/Register';
 import PrivateRoute from './PrivateRoute';
+import CarDetails from '../layouts/CarDetails/CarDetails';
 
 const Router = createBrowserRouter([
     {
@@ -23,7 +24,7 @@ const Router = createBrowserRouter([
             {
                 path: "/available-cars",
                 element: <AvailableCars></AvailableCars>,
-                loader: () => fetch('http://localhost:5000/car'),
+                loader: () => fetch('http://localhost:5000/available_car'),
             },
             {
                 path: "/add-car",
@@ -50,6 +51,11 @@ const Router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register></Register>,
+            },
+            {
+                path: "/car/:id",
+                element: <CarDetails></CarDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/car/${params.id}`)
             },
         ],
     },
