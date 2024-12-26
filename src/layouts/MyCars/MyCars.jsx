@@ -3,10 +3,13 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { Link } from "react-router-dom";
 // import axios from "axios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Loading from "../Loading/Loading";
+import Swal from "sweetalert2";
 
 const MyCars = () => {
 
     const [myCar, setMyCar] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [sortOption, setSortOption] = useState("");
     const { user } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
@@ -22,10 +25,15 @@ const MyCars = () => {
         // .then(res => setMyCar(res.data))
 
         axiosSecure.get(`/my_car?email=${user.email}`)
-        .then(res => setMyCar(res.data));
+            .then(res => {
+                setMyCar(res.data);
+                setLoading(false);
+            })
+    }, [user.email]);
 
-
-    }, [user.email])
+    if (loading) {
+        return <Loading></Loading>;
+    }
 
     const sortedCars = [...myCar].sort((a, b) => {
         if (sortOption === "price") {
@@ -36,6 +44,35 @@ const MyCars = () => {
         }
         return 0;
     });
+
+    const handleDelete = (_id) => {
+        Swal.fire({
+            title: "Are you sure you want to delete?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Confirm Delete"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/car/${_id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            setMyCar(prevCars => prevCars.filter(review => review._id !== _id));
+                            Swal.fire({
+                                title: "Successfully Deleted!",
+                                text: "Your review has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+    }
 
     return (
         <div className="w-11/12 mx-auto mt-5">
@@ -92,7 +129,7 @@ const MyCars = () => {
                                         <td>
                                             <div className="flex gap-1">
                                                 <button className="btn btn-primary btn-xs">Update</button>
-                                                <button className="btn btn-error btn-xs">Delete</button>
+                                                <button onClick={() => handleDelete(car._id)} className="btn btn-error btn-xs">Delete</button>
                                             </div>
                                         </td>
                                     </tr>
