@@ -15,11 +15,11 @@ const MyCars = () => {
     const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
-        // fetch(`http://localhost:5000/my_car?email=${user.email}`)
+        // fetch(`https://jo-car-server.vercel.app/my_car?email=${user.email}`)
         //     .then(res => res.json())
         //     .then(data => setMyCar(data))
 
-        // axios.get(`http://localhost:5000/my_car?email=${user.email}`, {
+        // axios.get(`https://jo-car-server.vercel.app/my_car?email=${user.email}`, {
         //     withCredentials: true
         // })
         // .then(res => setMyCar(res.data))
@@ -56,7 +56,7 @@ const MyCars = () => {
             confirmButtonText: "Confirm Delete"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/car/${_id}`, {
+                fetch(`https://jo-car-server.vercel.app/car/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -98,10 +98,10 @@ const MyCars = () => {
                             </ul>
                         </details>
                     </div>
-                        <div className="overflow-x-auto mt-5 shadow-md bg-[url('/assets/bg.jpg')] bg-cover bg-center shadow-red-400 text-white p-6 rounded-3xl">
-                            <table className="table">
+                    <div className="overflow-x-auto mt-5 shadow-md bg-[url('/assets/bg.jpg')] bg-cover bg-center shadow-red-400 text-white p-6 rounded-3xl">
+                        <table className="table">
                             {/* head */}
-                                <thead className="text-white">
+                            <thead className="text-white">
                                 <tr>
                                     <th>Car Image</th>
                                     <th>Car Model</th>

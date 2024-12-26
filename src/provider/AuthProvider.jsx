@@ -6,7 +6,7 @@ import axios from "axios";
 export const AuthContext = createContext();
 const auth = getAuth(app);
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
 
@@ -63,19 +63,20 @@ const AuthProvider = ({children}) => {
             if (currentUser?.email) {
                 const user = { email: currentUser.email };
 
-                axios.post('http://localhost:5000/jwt', user, {withCredentials: true})
-                .then(res => {
-                    console.log('login token', res.data);
-                    setLoading(false);
-                })
+                axios.post('https://jo-car-server.vercel.app/jwt', user, { withCredentials: true })
+                    .then(res => {
+                        console.log('login token', res.data);
+                        setLoading(false);
+                    })
             }
             else {
-                axios.post('http://localhost:5000/logout', {}, {
+                axios.post('https://jo-car-server.vercel.app/logout', {}, {
                     withCredentials: true
                 })
-                .then(res => {console.log('logout', res.data);
-                    setLoading(false);
-                })
+                    .then(res => {
+                        console.log('logout', res.data);
+                        setLoading(false);
+                    })
             }
         });
 

@@ -6,6 +6,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { FaCalendarAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import MyBookingsChart from "../../Components/MyBookingsChart/MyBookingsChart";
 
 const MyBookings = () => {
 
@@ -25,6 +26,11 @@ const MyBookings = () => {
     if (loading) {
         return <Loading></Loading>;
     }
+
+    const chartData = myBookingCar.map(car => ({
+        name: car.bookedCarModel,
+        dailyPrice: parseFloat(car.bookingDailyPrice),
+    }));
 
     const handleDate = (bookingId) => {
         const _id = bookingId;
@@ -74,7 +80,7 @@ const MyBookings = () => {
                     newBookStatus: "Confirmed"
                 };
 
-                fetch(`http://localhost:5000/booking_car/${_id}`, {
+                fetch(`https://jo-car-server.vercel.app/booking_car/${_id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"
@@ -123,7 +129,7 @@ const MyBookings = () => {
                     newBookStatus: "Canceled"
                 };
 
-                fetch(`http://localhost:5000/booking_car/${_id}`, {
+                fetch(`https://jo-car-server.vercel.app/booking_car/${_id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"
@@ -146,7 +152,7 @@ const MyBookings = () => {
                         }
                     })
                     .catch((err) => console.error("Error:", err));
-               
+
             }
         });
 
@@ -211,6 +217,9 @@ const MyBookings = () => {
                     </div>
                 </div>
             )}
+            <div className="mb-32">
+                <MyBookingsChart data={chartData}></MyBookingsChart>
+            </div>
         </div>
     );
 };

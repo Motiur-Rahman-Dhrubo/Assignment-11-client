@@ -33,7 +33,7 @@ const CarDetails = () => {
         const bookingDailyPrice = daily_rental_price;
         const newBookingStatus = "Pending";
         const bookingEmail = user.email;
-        const newBookingCar = { bookedCarImg, bookedCarModel, bookingDate, bookingDailyPrice, newBookingStatus, bookingEmail,totalDay };
+        const newBookingCar = { bookedCarImg, bookedCarModel, bookingDate, bookingDailyPrice, newBookingStatus, bookingEmail, totalDay };
 
         if (!user) {
             toast.warning("Please log in to proceed with booking.", {
@@ -53,7 +53,7 @@ const CarDetails = () => {
             confirmButtonText: "Yes, Book Now",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch('http://localhost:5000/booking_car', {
+                fetch('https://jo-car-server.vercel.app/booking_car', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

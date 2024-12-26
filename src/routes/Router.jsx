@@ -21,11 +21,12 @@ const Router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
+                loader: () => fetch('https://jo-car-server.vercel.app/top-prices'),
             },
             {
                 path: "/available-cars",
                 element: <AvailableCars></AvailableCars>,
-                loader: () => fetch('http://localhost:5000/available_car'),
+                loader: () => fetch('https://jo-car-server.vercel.app/available_car'),
             },
             {
                 path: "/add-car",
@@ -56,7 +57,7 @@ const Router = createBrowserRouter([
             {
                 path: "/car/:id",
                 element: <CarDetails></CarDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/car/${params.id}`)
+                loader: ({ params }) => fetch(`https://jo-car-server.vercel.app/car/${params.id}`)
             },
             {
                 path: "/update_car/:id",
@@ -65,7 +66,7 @@ const Router = createBrowserRouter([
                         <UpdateCar></UpdateCar>
                     </PrivateRoute>
                 ),
-                loader: ({ params }) => fetch(`http://localhost:5000/car/${params.id}`)
+                loader: ({ params }) => fetch(`https://jo-car-server.vercel.app/car/${params.id}`)
             },
         ],
     },
