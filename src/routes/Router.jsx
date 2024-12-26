@@ -10,6 +10,7 @@ import Login from '../layouts/Login/Login';
 import Register from '../layouts/Register/Register';
 import PrivateRoute from './PrivateRoute';
 import CarDetails from '../layouts/CarDetails/CarDetails';
+import UpdateCar from '../layouts/UpdateCar/UpdateCar';
 
 const Router = createBrowserRouter([
     {
@@ -55,6 +56,15 @@ const Router = createBrowserRouter([
             {
                 path: "/car/:id",
                 element: <CarDetails></CarDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/car/${params.id}`)
+            },
+            {
+                path: "/update_car/:id",
+                element: (
+                    <PrivateRoute>
+                        <UpdateCar></UpdateCar>
+                    </PrivateRoute>
+                ),
                 loader: ({ params }) => fetch(`http://localhost:5000/car/${params.id}`)
             },
         ],

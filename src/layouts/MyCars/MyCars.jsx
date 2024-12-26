@@ -65,7 +65,7 @@ const MyCars = () => {
                             setMyCar(prevCars => prevCars.filter(review => review._id !== _id));
                             Swal.fire({
                                 title: "Successfully Deleted!",
-                                text: "Your review has been deleted.",
+                                text: "Your car has been deleted.",
                                 icon: "success"
                             });
                         }
@@ -128,7 +128,7 @@ const MyCars = () => {
                                         <td>{car.current_date}</td>
                                         <td>
                                             <div className="flex gap-1">
-                                                <button className="btn btn-primary btn-xs">Update</button>
+                                                <Link to={`/update_car/${car._id}`} className="btn btn-primary btn-xs">Update</Link>
                                                 <button onClick={() => handleDelete(car._id)} className="btn btn-error btn-xs">Delete</button>
                                             </div>
                                         </td>
