@@ -41,7 +41,7 @@ const AddCar = () => {
         const user_email = user.email;
         const now = new Date();
         const current_date = `${String(now.getDate()).padStart(2, '0')} ${now.toLocaleString('en-US', { month: 'short' })} ${now.getFullYear()}`;
-        const booking_status = "Available";
+        const booking_status = "Available for Booking";
         const image_files = images.map(file => file.preview);
 
         const newCar = { car_model, car_brand, daily_rental_price, availability, vehicle_registration_number, features, description, booking_count, location, user_name, user_email, current_date, booking_status, image_files }

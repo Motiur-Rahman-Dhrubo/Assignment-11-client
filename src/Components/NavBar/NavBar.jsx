@@ -11,9 +11,15 @@ const NavBar = () => {
     const links = <>
         <li><NavLink className='py-1 px-3' to="/">Home</NavLink></li>
         <li><NavLink className='py-1 px-3' to="/available-cars">Available Cars</NavLink></li>
-        <li><NavLink className='py-1 px-3' to="/add-car">Add Car</NavLink></li>
-        <li><NavLink className='py-1 px-3' to="/my-cars">My Cars</NavLink></li>
-        <li><NavLink className='py-1 px-3' to="/my-bookings">My Bookings</NavLink></li>
+        {
+            user? (
+                <>
+                    <li><NavLink className='py-1 px-3' to="/add-car">Add Car</NavLink></li>
+                    <li><NavLink className='py-1 px-3' to="/my-cars">My Cars</NavLink></li>
+                    <li><NavLink className='py-1 px-3' to="/my-bookings">My Bookings</NavLink></li>
+                </>
+            ) : null
+        }
     </>
 
     const handleLogout = () => {
@@ -45,7 +51,12 @@ const NavBar = () => {
                         {links}
                     </ul>
                 </div>
-                <Link to="/" className="w-[120px]"><img className="w-full h-[50px]" src="/assets/logo.png" alt="logo" /></Link>
+                <Link to="/" className="w-[120px]">
+                    <img className="w-full h-[32px]" src="/assets/logo.png" alt="logo" />
+                    <h1 className="text-center text-xs">
+                        JO.Car Pvt Ltd.
+                    </h1>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 gap-2">

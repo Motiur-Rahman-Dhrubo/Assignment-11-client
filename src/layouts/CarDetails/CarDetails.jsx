@@ -10,9 +10,9 @@ import Loading from "../Loading/Loading";
 const CarDetails = () => {
 
     const [loading, setLoading] = useState(true);
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const carDetails = useLoaderData();
-    const { car_model, car_brand, daily_rental_price, availability, vehicle_registration_number, features, description, booking_count, location, user_name, user_email, current_date, booking_status, image_files } = carDetails;
+    const { car_model, daily_rental_price, availability, features, description, booking_count, location, booking_status, image_files } = carDetails;
 
     useEffect(() => {
         if (carDetails) {
@@ -25,6 +25,16 @@ const CarDetails = () => {
     }
 
     const bookNow = () => {
+        const bookedCarImg = image_files;
+        const bookedCarModel = car_model;
+        const now = new Date();
+        const bookingDate = `${String(now.getDate()).padStart(2, '0')}-${String(now.getMonth() + 1).padStart(2, '0')}-${now.getFullYear()} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        const bookingDailyPrice = daily_rental_price;
+        const newBookingStatus = "pending";
+        const bookingEmail = user.email;
+        const newBookingCar = { bookedCarImg, bookedCarModel, bookingDate, bookingDailyPrice, newBookingStatus, bookingEmail };
+
+
         if (!user) {
             toast.warning("Please log in to proceed with booking.", {
                 position: "top-center",
@@ -43,16 +53,27 @@ const CarDetails = () => {
             confirmButtonText: "Yes, Book Now",
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Booking Confirmed!",
-                    text: `You have successfully booked the ${car_model}.`,
-                    icon: "success",
-                });
+                fetch('http://localhost:5000/booking_car', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newBookingCar),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.insertedId) {
+                            Swal.fire({
+                                title: "Booking Confirmed!",
+                                text: `You have successfully booked the ${car_model}.`,
+                                icon: "success",
+                            });
+                        }
+                    })
             }
         });
-
     };
-    
+
     return (
         <div className="w-11/12 max-w-[700px] mx-auto shadow-lg bg-[url('/assets/bg.jpg')] bg-cover bg-center shadow-red-400 text-white p-6 rounded-3xl mt-5">
             <ToastContainer />
