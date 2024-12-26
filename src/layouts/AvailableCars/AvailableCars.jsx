@@ -69,7 +69,7 @@ const AvailableCars = () => {
 
                 {
                     sortedCars.map(car => (
-                        <div key={car._id} className="rounded-3xl w-full shadow-lg bg-[url('/assets/bg.jpg')] bg-cover bg-center shadow-red-400 text-white p-6 flex flex-col">
+                        <div key={car._id} className="rounded-3xl w-full shadow-md bg-[url('/assets/bg.jpg')] bg-cover bg-center shadow-red-400 text-white p-6 flex flex-col">
                             <h2 className="text-xl"><span className="font-bold">Car Model:</span> {car.car_model}</h2>
                             <p className="mt-1"><span className="text-lg font-semibold">Car Brand:</span> {car.car_brand}</p>
                             <p className="mt-1"><span className="text-lg font-semibold">Daily Rental Price:</span> ${car.daily_rental_price}</p>

@@ -29,11 +29,11 @@ const CarDetails = () => {
         const bookedCarModel = car_model;
         const now = new Date();
         const bookingDate = `${String(now.getDate()).padStart(2, '0')}-${String(now.getMonth() + 1).padStart(2, '0')}-${now.getFullYear()} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        const totalDay = 1;
         const bookingDailyPrice = daily_rental_price;
-        const newBookingStatus = "pending";
+        const newBookingStatus = "Pending";
         const bookingEmail = user.email;
-        const newBookingCar = { bookedCarImg, bookedCarModel, bookingDate, bookingDailyPrice, newBookingStatus, bookingEmail };
-
+        const newBookingCar = { bookedCarImg, bookedCarModel, bookingDate, bookingDailyPrice, newBookingStatus, bookingEmail,totalDay };
 
         if (!user) {
             toast.warning("Please log in to proceed with booking.", {
@@ -75,7 +75,7 @@ const CarDetails = () => {
     };
 
     return (
-        <div className="w-11/12 max-w-[700px] mx-auto shadow-lg bg-[url('/assets/bg.jpg')] bg-cover bg-center shadow-red-400 text-white p-6 rounded-3xl mt-5">
+        <div className="w-11/12 max-w-[700px] mx-auto shadow-md bg-[url('/assets/bg.jpg')] bg-cover bg-center shadow-red-400 text-white p-6 rounded-3xl mt-5">
             <ToastContainer />
             <p className="md:text-2xl text-xl"><span className="font-bold">Car Model:</span> {car_model}</p>
             <div className="flex gap-1 md:gap-5 flex-col md:flex-row mt-1">

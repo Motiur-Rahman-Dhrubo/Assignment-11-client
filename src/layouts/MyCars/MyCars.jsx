@@ -98,7 +98,7 @@ const MyCars = () => {
                             </ul>
                         </details>
                     </div>
-                        <div className="overflow-x-auto mt-5 shadow-lg bg-[url('/assets/bg.jpg')] bg-cover bg-center shadow-red-400 text-white p-6 rounded-3xl">
+                        <div className="overflow-x-auto mt-5 shadow-md bg-[url('/assets/bg.jpg')] bg-cover bg-center shadow-red-400 text-white p-6 rounded-3xl">
                             <table className="table">
                             {/* head */}
                                 <thead className="text-white">
