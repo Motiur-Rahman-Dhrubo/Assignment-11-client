@@ -5,7 +5,7 @@ import { useNavigation } from "react-router-dom";
 
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://jo-car-server.vercel.app',
     withCredentials: true
 })
 
@@ -14,7 +14,7 @@ const useAxiosSecure = () => {
     const { logOut } = useContext(AuthContext);
     const navigate = useNavigation;
 
-    useEffect( () => {
+    useEffect(() => {
         axiosInstance.interceptors.response.use(response => {
             return response;
         }, error => {
@@ -22,11 +22,11 @@ const useAxiosSecure = () => {
 
             if (error.status === 401 || error.status === 403) {
                 logOut()
-                .then(() => {
-                    console.log('logged out user');
-                    navigate('/login')
-                })
-                .catch(error => console.log(error));
+                    .then(() => {
+                        console.log('logged out user');
+                        navigate('/login')
+                    })
+                    .catch(error => console.log(error));
             }
 
             return Promise.reject(error);
