@@ -78,8 +78,8 @@ Follow these steps to run the project locally:
 ### 1️⃣ Clone the Repository:
 
 ```
-git clone https://github.com/Motiur-Rahman-Dhrubo/Assignment-10-client
-cd Assignment-10-client
+git clone https://github.com/Motiur-Rahman-Dhrubo/Assignment-11-client
+cd Assignment-11-client
 ```
 
 ### 2️⃣ Install Dependencies:
@@ -95,12 +95,12 @@ npm install
 - Copy your Firebase config and create a .env file:
 
 ```
-VITE_apiKey=AIzaSyDVsZVfDb5PGzXjICbR7mpOZT5zh8VK4rU
-VITE_authDomain=assignment-10-5f987.firebaseapp.com
-VITE_projectId=assignment-10-5f987
-VITE_storageBucket=assignment-10-5f987.firebasestorage.app
-VITE_messagingSenderId=590736055991
-VITE_appId=1:590736055991:web:900fc51eb183e209bc3732
+VITE_apiKey=AIzaSyCV69JHKHVVKK_AWY_SdpMawk8cIaoi0aQ
+VITE_authDomain=assignment-11-360e6.firebaseapp.com
+VITE_projectId=assignment-11-360e6
+VITE_storageBucket=assignment-11-360e6.firebasestorage.app
+VITE_messagingSenderId=112471139488
+VITE_appId=1:112471139488:web:1d7414a047180e2df155c5
 ```
 
 ### 4️⃣ Run the Development Server"
@@ -113,7 +113,7 @@ This will start the project at http://localhost:5173/
 
 ## 🔗 Resources & Links:
 
-- 🌐 Live Site: <a href="https://assignment-10-5f987.web.app/" target="_blank">
+- 🌐 Live Site: <a href="https://assignment-11-360e6.web.app/" target="_blank">
     Chill Gamer
   </a>
 - 📘 Firebase Docs: <a href="https://firebase.google.com/docs?gad_source=1&gclid=CjwKCAiAtYy9BhBcEiwANWQQL-DbXWI-_w3pwdhut53qzi7hqxihIvHRp_2sG6sO8T903WrROgityhoCs6YQAvD_BwE&gclsrc=aw.ds" target="_blank">
