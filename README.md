@@ -36,7 +36,7 @@ JO.Car is built with modern React-based technologies:
 
 ## 📦 Dependencies:
 
-Here are the key dependencies used in this project:
+Here are the key dependencies used in this project::
 
 ### 🔹 Frontend Libraries:
 
