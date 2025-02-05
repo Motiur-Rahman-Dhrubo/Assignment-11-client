@@ -15,7 +15,7 @@ JO.Car is a feature-rich and user-centric car rental platform that allows users 
 
 ## 🛠️ Technologies Used:
 
-JO.Car is built with modern React-based technologies::
+JO.Car is built with modern React-based technologies:
 
 - Frontend: React, React Router, React Icons.
 - State Management: LocalForage.
