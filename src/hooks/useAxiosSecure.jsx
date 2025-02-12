@@ -15,24 +15,54 @@ const useAxiosSecure = () => {
     const navigate = useNavigation;
 
     useEffect(() => {
-        axiosInstance.interceptors.response.use(response => {
-            return response;
-        }, error => {
-            console.log('error get by interceptor', error)
+        const interceptor = axiosInstance.interceptors.response.use(
+            (response) => response,
+            (error) => {
+                console.log("Error intercepted:", error);
 
-            if (error.status === 401 || error.status === 403) {
-                logOut()
-                    .then(() => {
-                        console.log('logged out user');
-                        navigate('/login')
-                    })
-                    .catch(error => console.log(error));
+                if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+                    logOut()
+                        .then(() => {
+                            console.log("User logged out due to unauthorized request.");
+                            navigate("/login");
+                        })
+                        .catch((error) => console.error("Logout error:", error));
+                }
+
+                return Promise.reject(error);
             }
+        );
 
-            return Promise.reject(error);
-        })
-    }, [])
+        return () => {
+            axiosInstance.interceptors.response.eject(interceptor);
+        };
+    }, [logOut, navigate]);
+
     return axiosInstance;
 };
 
 export default useAxiosSecure;
+
+
+
+
+
+
+// useEffect(() => {
+//     axiosInstance.interceptors.response.use(response => {
+//         return response;
+//     }, error => {
+//         console.log('error get by interceptor', error)
+
+//         if (error.status === 401 || error.status === 403) {
+//             logOut()
+//                 .then(() => {
+//                     console.log('logged out user');
+//                     navigate('/login')
+//                 })
+//                 .catch(error => console.log(error));
+//         }
+
+//         return Promise.reject(error);
+//     })
+// }, [])
