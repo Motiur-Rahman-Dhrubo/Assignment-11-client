@@ -80,7 +80,7 @@ const MyBookings = () => {
                     newBookStatus: "Confirmed"
                 };
 
-                fetch(`https://jo-car-server.vercel.app/booking_car/${_id}`, {
+                fetch(`http://localhost:5000/booking_car/${_id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"
@@ -129,7 +129,7 @@ const MyBookings = () => {
                     newBookStatus: "Canceled"
                 };
 
-                fetch(`https://jo-car-server.vercel.app/booking_car/${_id}`, {
+                fetch(`http://localhost:5000/booking_car/${_id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"
@@ -162,7 +162,7 @@ const MyBookings = () => {
 
 
     return (
-        <div className="w-11/12 mx-auto mt-5">
+        <div className="w-11/12 mx-auto mt-10">
             {myBookingCar.length === 0 ? (
                 <div className="text-center py-[100px]">
                     <p className="text-lg font-medium text-gray-700">You haven't added any booking yet.</p>
@@ -172,7 +172,7 @@ const MyBookings = () => {
                 </div>
             ) : (
                 <div className="min-h-[300px]">
-                    <div className="overflow-x-auto mt-5 shadow-md shadow-red-400 text-green-500 p-6 rounded-3xl">
+                    <div className="overflow-x-auto mt-5 shadow-md shadow-green-500 text-green-500 p-6 rounded-lg">
                         <table className="table table-zebra">
                             {/* head */}
                             <thead className="text-green-600 text-sm font-bold bg-blue-300">
@@ -217,7 +217,7 @@ const MyBookings = () => {
                     </div>
                 </div>
             )}
-            <div className="mb-32">
+            <div>
                 <MyBookingsChart data={chartData}></MyBookingsChart>
             </div>
         </div>

@@ -23,9 +23,9 @@ const offers = [
 
 const Offer = () => {
     return (
-        <div className="w-11/12 mx-auto mt-10">
-            <h2 className="text-3xl font-bold text-center mb-8">Special Offers</h2>
-            <div className="grid md:grid-cols-3 gap-6">
+        <div className="w-11/12 mx-auto mt-5">
+            <h2 className="md:text-5xl text-4xl text-black italic text-center font-medium" style={{ textShadow: "2px 2px 4px rgba(255, 185, 22, 0.8)" }}>Special Offers:</h2>
+            <div className="grid md:grid-cols-3 gap-6 mt-10">
                 {offers.map((offer, index) => (
                     <motion.div
                         key={index}
