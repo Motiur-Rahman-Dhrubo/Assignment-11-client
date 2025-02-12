@@ -28,7 +28,7 @@ const Home = () => {
             <WhyChooseUs></WhyChooseUs>
 
             <div className="mt-5 w-11/12 mx-auto">
-                <h2 className="md:text-5xl text-4xl text-black italic text-center font-medium" style={{ textShadow: "2px 2px 4px rgba(255, 185, 22, 0.8)" }}>Best Collection:</h2>
+                <h2 className="md:text-5xl text-4xl text-black italic text-center font-medium" style={{ textShadow: "2px 2px 4px blue" }}>Best Collection:</h2>
                 <div className="mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
                     {topSix.map((car) => (
                         <div className="border rounded-lg p-4 flex flex-col bg-[#D7DDE4] hover:shadow-lg hover:shadow-green-500" key={car._id}>

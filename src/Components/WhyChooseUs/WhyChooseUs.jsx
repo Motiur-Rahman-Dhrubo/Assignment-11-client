@@ -6,7 +6,7 @@ import { RiCustomerService2Line } from "react-icons/ri";
 const WhyChooseUs = () => {
     return (
         <div className="mt-5 w-11/12 mx-auto">
-            <h2 className="md:text-5xl text-4xl text-black italic text-center font-medium" style={{ textShadow: "2px 2px 4px rgba(255, 185, 22, 0.8)" }}>Why Choose Us?</h2>
+            <h2 className="md:text-5xl text-4xl text-black italic text-center font-medium" style={{ textShadow: "2px 2px 4px blue" }}>Why Choose Us?</h2>
             <div className="mt-10 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
                 <div className="p-6 rounded-lg border bg-[url('/assets/bg.jpg')] bg-cover bg-center text-white flex flex-col gap-3 items-center">
                     <p><IoCarSport className="text-5xl"/></p>
