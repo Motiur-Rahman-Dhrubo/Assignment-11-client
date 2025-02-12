@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link } from "react-router-dom";
-// import axios from "axios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loading from "../Loading/Loading";
 import Swal from "sweetalert2";
@@ -79,7 +78,7 @@ const MyCars = () => {
                 <div className="min-h-[300px]">
                     <div>
                         <details className="dropdown">
-                            <summary className="btn">Sort</summary>
+                            <summary className="btn btn-primary font-semibold text-white">Sort</summary>
                             <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                                 <li>
                                     <button onClick={() => setSortOption("price")}>Sort by Price</button>

@@ -46,9 +46,9 @@ const AvailableCars = () => {
         <div className="w-11/12 mx-auto mt-5">
             <div className="flex justify-between gap-2">
                 <div className="flex gap-2 min-w-max">
-                    <button onClick={toggleLayout} className="btn">{layout === "grid" ? "List View" : "Grid View"}</button>
+                    <button onClick={toggleLayout} className="btn btn-primary text-white font-semibold">{layout === "grid" ? "List View" : "Grid View"}</button>
                     <details className="dropdown">
-                        <summary className="btn">Sort</summary>
+                        <summary className="btn btn-primary text-white font-semibold">Sort</summary>
                         <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                             <li>
                                 <button onClick={() => setSortOption("price")}>Sort by Price</button>
