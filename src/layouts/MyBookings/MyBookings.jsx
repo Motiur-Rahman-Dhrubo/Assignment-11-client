@@ -80,7 +80,7 @@ const MyBookings = () => {
                     newBookStatus: "Confirmed"
                 };
 
-                fetch(`http://localhost:5000/booking_car/${_id}`, {
+                fetch(`https://jo-car-server.vercel.app/booking_car/${_id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"
@@ -129,7 +129,7 @@ const MyBookings = () => {
                     newBookStatus: "Canceled"
                 };
 
-                fetch(`http://localhost:5000/booking_car/${_id}`, {
+                fetch(`https://jo-car-server.vercel.app/booking_car/${_id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"

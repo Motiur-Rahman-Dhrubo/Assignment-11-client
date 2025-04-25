@@ -53,7 +53,7 @@ const CarDetails = () => {
             confirmButtonText: "Yes, Book Now",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch('http://localhost:5000/booking_car', {
+                fetch('https://jo-car-server.vercel.app/booking_car', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
