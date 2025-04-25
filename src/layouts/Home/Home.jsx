@@ -31,7 +31,7 @@ const Home = () => {
                 <h2 className="md:text-5xl text-4xl text-black italic text-center font-medium" style={{ textShadow: "2px 2px 4px blue" }}>Best Collection:</h2>
                 <div className="mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
                     {topSix.map((car) => (
-                        <div className="border rounded-lg p-4 flex flex-col bg-[#D7DDE4] hover:shadow-lg hover:shadow-green-500" key={car._id}>
+                        <div className="border rounded-lg p-4 flex flex-col bg-[#D7DDE4] hover:shadow-lg hover:shadow-blue-500" key={car._id}>
                             
                                 {car.image_files.length > 0 ? (
                                     <img src={car.image_files[0]} alt="car_img" className="rounded-lg border object-cover aspect-[2/1] w-full" />
