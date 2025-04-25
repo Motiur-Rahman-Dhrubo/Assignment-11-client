@@ -54,7 +54,7 @@ const Login = () => {
     return (
         <div className="min-h-screen flex justify-center items-center mt-5 w-11/12 mx-auto">
             <ToastContainer />
-            <div className="card rounded-tr-none rounded-bl-none rounded-tl-lg rounded-br-lg w-full max-w-sm shrink-0 shadow-md bg-[url('/assets/bg.jpg')] bg-cover bg-center shadow-green-500">
+            <div className="card rounded-tr-none rounded-bl-none rounded-tl-lg rounded-br-lg w-full max-w-sm shrink-0 shadow-md bg-[url('/assets/bg.jpg')] bg-cover bg-center shadow-blue-500">
                 <form onSubmit={handleSubmit} className="card-body">
 
                     {/* email */}
