@@ -47,7 +47,7 @@ const AddCar = () => {
         const newCar = { car_model, car_brand, daily_rental_price, availability, vehicle_registration_number, features, description, booking_count, location, user_name, user_email, current_date, booking_status, image_files }
 
         //send data to server
-        fetch('https://jo-car-server.vercel.app/car', {
+        fetch('https://localhost:5000/car', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

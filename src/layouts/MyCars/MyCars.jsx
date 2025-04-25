@@ -47,7 +47,7 @@ const MyCars = () => {
             confirmButtonText: "Confirm Delete"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://jo-car-server.vercel.app/car/${_id}`, {
+                fetch(`https://localhost:5000/car/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
