@@ -175,7 +175,7 @@ const MyBookings = () => {
                     <div className="overflow-x-auto mt-5 shadow-md shadow-blue-500 text-blue-500 p-6 rounded-lg">
                         <table className="table table-zebra">
                             {/* head */}
-                            <thead className="text-green-600 text-sm font-bold bg-blue-300">
+                            <thead className="text-blue-600 text-sm font-bold bg-blue-300">
                                 <tr>
                                     <th>Car Image</th>
                                     <th>Car Model</th>
