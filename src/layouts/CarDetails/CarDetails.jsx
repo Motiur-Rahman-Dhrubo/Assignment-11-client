@@ -75,7 +75,7 @@ const CarDetails = () => {
     };
 
     return (
-        <div className="w-11/12 max-w-[700px] mx-auto shadow-md bg-[url('/assets/bg.jpg')] bg-cover bg-center shadow-green-500 text-white p-6 rounded-lg mt-5">
+        <div className="w-11/12 max-w-[700px] mx-auto shadow-md bg-[url('/assets/bg.jpg')] bg-cover bg-center shadow-blue-500 text-white p-6 rounded-lg mt-5">
             <ToastContainer />
             <p className="md:text-2xl text-xl"><span className="font-bold">Car Model:</span> {car_model}</p>
             <div className="flex gap-1 md:gap-5 flex-col md:flex-row mt-1">
