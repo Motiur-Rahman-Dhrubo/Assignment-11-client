@@ -53,7 +53,7 @@ const CarDetails = () => {
             confirmButtonText: "Yes, Book Now",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch('https://localhost:5000/booking_car', {
+                fetch('http://localhost:5000/booking_car', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

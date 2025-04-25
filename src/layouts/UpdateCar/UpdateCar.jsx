@@ -43,7 +43,7 @@ const UpdateCar = () => {
 
         const updateCar = { car_model, car_brand, daily_rental_price, availability, vehicle_registration_number, features, description, location, image_files }
 
-        fetch(`https://localhost:5000/car/${_id}`, {
+        fetch(`http://localhost:5000/car/${_id}`, {
             method: 'put',
             headers: {
                 'content-type': 'application/json'

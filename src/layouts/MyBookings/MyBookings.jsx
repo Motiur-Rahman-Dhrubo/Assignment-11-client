@@ -80,7 +80,7 @@ const MyBookings = () => {
                     newBookStatus: "Confirmed"
                 };
 
-                fetch(`https://localhost:5000/booking_car/${_id}`, {
+                fetch(`http://localhost:5000/booking_car/${_id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"
@@ -129,7 +129,7 @@ const MyBookings = () => {
                     newBookStatus: "Canceled"
                 };
 
-                fetch(`https://localhost:5000/booking_car/${_id}`, {
+                fetch(`http://localhost:5000/booking_car/${_id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"
