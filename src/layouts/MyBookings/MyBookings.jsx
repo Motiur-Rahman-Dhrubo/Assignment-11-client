@@ -172,7 +172,7 @@ const MyBookings = () => {
                 </div>
             ) : (
                 <div className="min-h-[300px]">
-                    <div className="overflow-x-auto mt-5 shadow-md shadow-green-500 text-green-500 p-6 rounded-lg">
+                    <div className="overflow-x-auto mt-5 shadow-md shadow-blue-500 text-green-500 p-6 rounded-lg">
                         <table className="table table-zebra">
                             {/* head */}
                             <thead className="text-green-600 text-sm font-bold bg-blue-300">
